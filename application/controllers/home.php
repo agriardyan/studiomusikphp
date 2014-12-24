@@ -21,9 +21,17 @@ class home extends CI_Controller {
         $this->load->view('halaman-welcome-home');
     }
     
+    public function member() {
+        $this->load->view('menubar-home');
+        $this->load->view('halaman-signin-member');
+    }
+    
     public function help() {
         $this->load->view('menubar-home');
         $this->load->view('halaman-help-home');
+    }
+    
+    public function loginmember() {
         
     }
     
