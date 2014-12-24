@@ -6,8 +6,8 @@ and open the template in the editor.
 <html>
     <head>
         <title>Member Area</title>
-        <link rel="shortcut icon" href="<?php echo utility_helper::resources_url().'img/OM-Item_Logo.png'; ?> " type="image/png">
-        <link href="<?php echo utility_helper::resources_url().'/semantic-ui/packaged/css/semantic.css'; ?>" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="<?php echo utility_helper::resources_url() . 'img/OM-Item_Logo.png'; ?> " type="image/png">
+        <link href="<?php echo utility_helper::resources_url() . '/semantic-ui/packaged/css/semantic.css'; ?>" rel="stylesheet" type="text/css">
     </head>
     <body>
 
@@ -28,17 +28,20 @@ and open the template in the editor.
                     <h4 class="ui top center aligned attached inverted blue block header">
                         SIGN IN
                     </h4>
-                    <form class="ui form segment attached" id="mtixSignin" action="loginmember" method="POST">
-                        <c:if test="${!empty message}">
-                            <div class="field">
+                    <form class="ui form segment attached" id="mtixSignin" action="validatemember" method="POST">
+                        <?php
+                        if (!is_null($error)) {
+                            echo '<div class="field">
                                 <div class="ui error form segment">
                                     <div class="ui error message">
                                         <div class="header">Gagal Signin</div>
-                                        <p>${message}</p>
+                                        <p>' . $error . '</p>
                                     </div>      
                                 </div>
-                            </div>
-                        </c:if>
+                            </div>';
+                        }
+                        ?>
+
                         <div class="field">
                             <div class="ui blue ribbon label">Username</div>
                             <div class="ui left labeled icon input">
@@ -64,8 +67,8 @@ and open the template in the editor.
         <!--End of Main body-->
 
         <!--Script-->
-        <script src="<?php echo utility_helper::resources_url().'semantic-ui/packaged/javascript/jquery-2.1.1.js'; ?>" type="text/javascript"></script>
-        <script src="<?php echo utility_helper::resources_url().'semantic-ui/packaged/javascript/semantic.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo utility_helper::resources_url() . 'semantic-ui/packaged/javascript/jquery-2.1.1.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo utility_helper::resources_url() . 'semantic-ui/packaged/javascript/semantic.js'; ?>" type="text/javascript"></script>
         <script type="text/javascript">
             //Reset login sidebar value when reload
             var originalState = $('#mtixSignin').clone();

@@ -31,9 +31,36 @@ class home extends CI_Controller {
         $this->load->view('halaman-help-home');
     }
     
-    public function loginmember() {
+    public function validatemember() {
+        
+        $username = $this->input->post('username', TRUE);
+        $password = $this->input->post('password', TRUE);
+        
+        $this->load->model('member');
+        $result = $this->member->validate_login($username, $password);
+        
+        switch ($result) {
+            case 0:
+                $this->login_error('Unregistered username');
+                break;
+            case 1:
+                $this->login_error('Invalid password');
+                break;
+            case 2:
+                redirect('member/halamanutamamember');
+                break;
+            default:
+                break;
+        }
         
     }
+    
+    public function login_error($error) {
+        $data['error'] = $error;
+        $this->load->view('menubar-home');
+        $this->load->view('halaman-signin-member', $data);
+    }
+    
     
 }
 
